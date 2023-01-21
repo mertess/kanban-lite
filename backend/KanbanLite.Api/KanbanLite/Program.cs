@@ -1,6 +1,7 @@
 using KanbanLite.Core.Db;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<KanbanLiteDbContext>(contextBuilder =>
         options => options.MigrationsAssembly("KanbanLite.Migrations")
     )
 );
+
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
