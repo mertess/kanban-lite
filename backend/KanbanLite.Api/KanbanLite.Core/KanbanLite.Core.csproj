@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Db\Repositories\" />
+    <Folder Include="Handlers\Boards\" />
+    <Folder Include="Handlers\Stages\" />
+    <Folder Include="Handlers\Tasks\" />
   </ItemGroup>
 
 </Project>

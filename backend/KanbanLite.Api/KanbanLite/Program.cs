@@ -1,3 +1,4 @@
+using KanbanLite.Core;
 using KanbanLite.Core.Db;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -5,14 +6,7 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<KanbanLiteDbContext>(contextBuilder => 
-    contextBuilder.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"), 
-        options => options.MigrationsAssembly("KanbanLite.Migrations")
-    )
-);
-
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+new DiBootstrapper().ConfigureServices(builder.Services, builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
