@@ -7,7 +7,8 @@ React + Redux + TypeScript, ASP.NET Core 6 + EF Core 6
 - Setup backend web app ✅
 - Design a primary database model ✅
 - Add models of the database entities to the backend web app for code-first ✅
-- Implement Repository, UnitOfWork patterns in a backend app ❌
+- Implement Repository, UnitOfWork patterns in a backend app ✅
+- Add an abstraction of the endpoint result ❌
 - Add endpoints for all database entities to the backend web app ❌
 
 ## Addition content:
