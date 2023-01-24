@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Boards\" />
     <Folder Include="Handlers\Stages\" />
     <Folder Include="Handlers\Tasks\" />
   </ItemGroup>

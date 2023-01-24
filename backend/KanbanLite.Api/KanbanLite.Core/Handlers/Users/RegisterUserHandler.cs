@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KanbanLite.Core.Handlers.Users
 {
-    public class RegisterUserCommand : ICommand<RegisterUserResult>
+    public class RegisterUserCommand : ICommand<VoidResult>
     {
         [Required]
         public string Name { get; set; } = null!;
@@ -17,9 +17,7 @@ namespace KanbanLite.Core.Handlers.Users
         public string Password { get; set; } = null!;
     }
 
-    public class RegisterUserResult { }
-
-    public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, RegisterUserResult>
+    public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, VoidResult>
     {
         private readonly UserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -30,7 +28,7 @@ namespace KanbanLite.Core.Handlers.Users
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<RegisterUserResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<VoidResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             _userRepository.Create(new User
             {
@@ -39,9 +37,9 @@ namespace KanbanLite.Core.Handlers.Users
                 PasswordHash = HashGenerator.GetMd5Hash(request.Password),
             });
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new RegisterUserResult();
+            return new VoidResult();
         }
     }
 }

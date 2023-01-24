@@ -1,6 +1,6 @@
-﻿using KanbanLite.Core.Handlers.Users;
+﻿using KanbanLite.Core.Common;
+using KanbanLite.Core.Handlers.Users;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KanbanLite.Api.Controllers
@@ -14,7 +14,7 @@ namespace KanbanLite.Api.Controllers
         public AccountController(IMediator mediator) => _mediator = mediator;
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<RegisterUserResult>> Register(RegisterUserCommand command)
+        public async Task<ActionResult<VoidResult>> Register(RegisterUserCommand command)
         {
             var result = await _mediator.Send(command);
 
